@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
 {% block title %}Detail{% endblock title %}
-
 {% block content %}
-
 <br>
 <div class="card">
   <h5 class="card-header">Restaurant Info</h5>
@@ -15,6 +12,15 @@
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
+    {% for item in restaurant.items.all %}
+        {{ item.name}} - {{ item.description }} - {{ item.price }}
+        <br>
+    {% endfor %}
+    <div class="row text-center">
+        <div class="col-md-6">
+            <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-primary btn-block">Add item</a>
+        </div>
+        </div>
     <div class="row text-center">
         <div class="col-md-6">
             <a href="{% url 'restaurant-update' restaurant.id %}" class="btn btn-outline-primary btn-block">Update</a>
